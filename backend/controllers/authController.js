@@ -1,5 +1,6 @@
 const path = require("path");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const catchAsync = require(path.join(
   __dirname,
   "..",
@@ -44,4 +45,34 @@ exports.login = catchAsync(async (req, res, next) => {
     message: "Authorized",
     token,
   });
+});
+
+exports.protect = catchAsync(async (req, res, next) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return next(new AppError(401, "Unauthorized, please login!"));
+
+  const decoded = await jwt.decode(
+    token,
+    process.env.JWT_SECRET,
+    (token, err) => {
+      if (err) return next(new AppError(401, "Invalid token, please login!"));
+      return token;
+    }
+  );
+  const user = await User.findById(decoded.id);
+  if (!user)
+    return next(new AppError(401, "User deleted profile, please login!"));
+  if (!user.checkPasswordChange())
+    return next(
+      new AppError(401, "Password changed in meantime, please login again!")
+    );
+
+  req.user = user;
+  next();
+});
+
+exports.changeData = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  res.send("JEBEM TI KEVU");
 });

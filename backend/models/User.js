@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema(
         message: "Passwords are not matching",
       },
     },
+    passwordChangedAt: {
+      default: new Date(),
+      type: Date,
+    },
   },
   { timestamps: true }
 );
@@ -66,6 +70,12 @@ userSchema.statics.checkFields = function (body) {
   return true;
 };
 
+userSchema.methods.checkPasswordChange = function () {
+  if (!this.passwordChangedAt) return true;
+  if (this.passwordChangedAt.getTime() > new Date().getTime()) return false;
+
+  return true;
+};
 //pre-save middleware for hashing password
 userSchema.pre("save", async function (next) {
   if (!this.isNew) return next();
