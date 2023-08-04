@@ -12,7 +12,8 @@ const Post = require(path.join(__dirname, "..", "models", "Post"));
 const mongoose = require("mongoose");
 
 exports.createPost = catchAsync(async (req, res, next) => {
-  if (!req.files) return next(new AppError(400, "Provide image"));
+  if (!req.files || req.files.length === 0)
+    return next(new AppError(400, "Provide image"));
   if (req.files.some((el) => !el.mimetype.startsWith("image")))
     return next(new AppError(400, "Provide valid images"));
   const user = await User.findById(req.user.id);
@@ -53,4 +54,17 @@ exports.deletePost = catchAsync(async (req, res, next) => {
     );
   await Post.findByIdAndDelete(req.params.postId);
   return res.status(204).json({});
+});
+
+exports.likePost = catchAsync(async (req, res, next) => {
+  //If likes array already includes current user, remove him, else add him
+  const post = await Post.findById(req.params.postId);
+  if (post.likes.some((el) => el.equals(req.user.id)))
+    post.likes = post.likes.filter((e) => !e.equals(req.user.id));
+  else post.likes.push(req.user.id);
+  await post.save();
+  return res.status(200).json({
+    status: "success",
+    message: post.likes.includes(req.user.id) ? "Post liked" : "Post unliked",
+  });
 });

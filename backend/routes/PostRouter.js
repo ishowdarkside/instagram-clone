@@ -8,7 +8,7 @@ const { protect } = require(path.join(
   "controllers",
   "authController"
 ));
-const { createPost, deletePost } = require(path.join(
+const { createPost, deletePost, likePost } = require(path.join(
   __dirname,
   "..",
   "controllers",
@@ -19,4 +19,5 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 router.post("/create-post", protect, upload.array("photos", 3), createPost);
 router.delete("/delete-post/:postId", protect, deletePost);
+router.patch("/like-post/:postId", protect, likePost);
 module.exports = router;
