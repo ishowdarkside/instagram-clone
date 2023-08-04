@@ -9,12 +9,14 @@ const errorMiddleware = require(path.join(
 ));
 const app = express();
 const authRouter = require(path.join(__dirname, "routes", "authRouter"));
+const postRouter = require(path.join(__dirname, "routes", "PostRouter"));
 
 //Parsing incoming json
 app.use(express.json());
 
 //Routing for signup/login
 app.use("/api/auth", authRouter);
+app.use("/api/posts", postRouter);
 
 app.use(errorMiddleware);
 
