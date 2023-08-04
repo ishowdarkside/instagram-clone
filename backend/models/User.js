@@ -78,9 +78,12 @@ userSchema.methods.checkPasswordChange = function () {
 };
 //pre-save middleware for hashing password
 userSchema.pre("save", async function (next) {
-  if (!this.isNew) return next();
-  this.passwordConfirm = undefined;
-  this.password = await bcrypt.hash(this.password, 10);
+  if (this.isNew || this.isModified("password")) {
+    this.passwordConfirm = undefined;
+    this.password = await bcrypt.hash(this.password, 10);
+    return next();
+  }
+
   next();
 });
 

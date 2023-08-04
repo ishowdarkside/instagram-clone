@@ -73,6 +73,25 @@ exports.protect = catchAsync(async (req, res, next) => {
 
 exports.changeData = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user.id);
+  delete req.body.password;
+  Object.entries(req.body).forEach((e) => (user[e[0]] = e[1]));
+  await user.save({ validateBeforeSave: false });
+  res.status(200).json({
+    status: "success",
+    message: "Successfully updated account",
+  });
+});
 
-  res.send("JEBEM TI KEVU");
+exports.changePassword = catchAsync(async (req, res, next) => {
+  if (!req.body.oldPassword || !req.body.newPassword)
+    return next(new AppError(400, "Provide all fields"));
+  const user = await User.findById(req.user.id);
+  const compared = await bcrypt.compare(req.body.oldPassword, user.password);
+  if (!compared) return next(new AppError(400, "Wrong password"));
+  user.password = req.body.newPassword;
+  await user.save({ validateBeforeSave: false });
+  res.status(200).json({
+    status: "success",
+    message: "Password updated successfully!",
+  });
 });
