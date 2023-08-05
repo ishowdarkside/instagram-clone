@@ -44,6 +44,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
 
 exports.deletePost = catchAsync(async (req, res, next) => {
   const post = await Post.findById(req.params.postId);
+  if (!post) return next(new AppError(404, "Post doesn't exist anymore"));
 
   if (
     post.creator.toString() !==
@@ -67,4 +68,22 @@ exports.likePost = catchAsync(async (req, res, next) => {
     status: "success",
     message: post.likes.includes(req.user.id) ? "Post liked" : "Post unliked",
   });
+});
+
+exports.commentPost = catchAsync(async (req, res, next) => {
+  const post = await Post.findById(req.params.postId);
+  post.comments.push({ creator: req.user.id, comment: req.body.comment });
+  await post.save();
+  res.status(200).json({
+    status: "success",
+    message: "Comment published successfully!",
+  });
+});
+
+exports.deleteComment = catchAsync(async (req, res, next) => {
+  const post = await Post.findById(req.params.postId);
+
+  post.comments = post.comments.filter((e) => e.id !== req.body.commentId);
+  await post.save();
+  return res.status(204).json({});
 });
