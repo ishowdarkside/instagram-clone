@@ -2,6 +2,7 @@
 import { usePostContext } from "../../context/ActivePost";
 import { useProtect } from "../../hooks/useProtect";
 import styles from "./Me.module.scss";
+import ModalStyles from "./PostModal.module.scss";
 import Modal from "../../ui/Modal/Modal";
 export default function Me() {
   const { state } = usePostContext();
@@ -93,5 +94,10 @@ function MyPostModal() {
     state: { activePost },
   } = usePostContext();
 
-  console.log(activePost);
+  return (
+    <div className={ModalStyles.postModal}>
+      <img src={`http://127.0.0.1:3000/${activePost.images[0]}`} />
+      <div>RIGHT PANEL</div>
+    </div>
+  );
 }

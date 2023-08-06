@@ -7,14 +7,21 @@ export default function Modal({ children }) {
   const { dispatch, state } = usePostContext();
 
   return createPortal(
-    <div className={styles.modalOverlay}>
+    <div
+      className={styles.modalOverlay}
+      onClick={(e) => {
+        dispatch({ type: "reset" });
+      }}
+    >
       <button
         className={styles.closeModal}
         onClick={() => dispatch({ type: "reset" })}
       >
         {<IoCloseSharp />}
       </button>
-      <div className={styles.modalPanel}>{children}</div>
+      <div className={styles.modalPanel} onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
     </div>,
     document.body
   );
