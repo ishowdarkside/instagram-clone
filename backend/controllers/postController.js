@@ -12,6 +12,7 @@ const Post = require(path.join(__dirname, "..", "models", "Post"));
 const mongoose = require("mongoose");
 
 exports.createPost = catchAsync(async (req, res, next) => {
+  console.log(req.files);
   if (!req.files || req.files.length === 0)
     return next(new AppError(400, "Provide image"));
   if (req.files.some((el) => !el.mimetype.startsWith("image")))

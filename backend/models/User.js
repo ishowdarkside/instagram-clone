@@ -50,10 +50,16 @@ const userSchema = new mongoose.Schema(
       },
     },
     passwordChangedAt: {
-      default: new Date(),
       type: Date,
     },
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+    profilePicture: {
+      type: String,
+      default: "default_pic.png",
+    },
+    description: { type: String },
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

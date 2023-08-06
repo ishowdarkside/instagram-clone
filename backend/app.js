@@ -12,6 +12,9 @@ const app = express();
 const authRouter = require(path.join(__dirname, "routes", "authRouter"));
 const postRouter = require(path.join(__dirname, "routes", "PostRouter"));
 
+//serving static files
+app.use(express.static(path.join(__dirname, "public")));
+
 //Parsing incoming json
 app.use(express.json());
 

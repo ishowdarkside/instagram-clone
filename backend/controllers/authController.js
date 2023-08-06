@@ -105,8 +105,10 @@ exports.verify = catchAsync(async (req, res, next) => {
     if (err) return next(new AppError(401, "Invalid token, please login!"));
     return token;
   });
-  console.log(decoded);
-  const user = await User.findById(decoded.id).select("-password");
+
+  const user = await User.findById(decoded.id)
+    .select("-password")
+    .populate("posts");
   if (!user)
     return next(new AppError(401, "User deleted profile, please login!"));
   if (!user.checkPasswordChange())

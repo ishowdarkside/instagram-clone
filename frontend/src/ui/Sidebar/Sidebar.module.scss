@@ -1,0 +1,38 @@
+.sidebarList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 1rem 0.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #f2f2f2;
+    }
+
+    img {
+      max-width: 2.4rem;
+    }
+  }
+}
+
+.sidebar {
+  padding: 5rem 3rem;
+  border-right: 1px solid #dbdbdb;
+
+  .logo {
+    display: block;
+    margin-bottom: 3rem;
+  }
+}
+
+.active {
+  font-weight: 600 !important;
+}

@@ -31,8 +31,11 @@ export async function login(formData) {
   }
 }
 
-export async function verify(token) {
+export async function verify() {
   try {
+    const token = localStorage.getItem("jwt");
+
+    if (!token) return null;
     const res = await fetch(`http://127.0.0.1:3000/api/auth/verify`, {
       headers: { Authorization: `Bearer ${token}` },
     });

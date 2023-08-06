@@ -1,0 +1,11 @@
+@import "../../styles/mixins.scss";
+
+.layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 30rem 1fr;
+
+  @include responsive("tab-land") {
+    grid-template-columns: 1fr;
+  }
+}
