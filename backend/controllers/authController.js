@@ -37,7 +37,8 @@ exports.login = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ username: req.body.username });
   if (!user) return next(new AppError(400, "Invalid username/password"));
   const decrypted = await bcrypt.compare(req.body.password, user.password);
-  if (decrypted) return next(new AppError(400, "Invalid username/password"));
+
+  if (!decrypted) return next(new AppError(400, "Invalid username/password"));
 
   const token = await generateToken(user.id);
   res.status(200).json({
