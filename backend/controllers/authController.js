@@ -96,3 +96,25 @@ exports.changePassword = catchAsync(async (req, res, next) => {
     message: "Password updated successfully!",
   });
 });
+
+exports.verify = catchAsync(async (req, res, next) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return next(new AppError(401, "Unauthorized, please login!"));
+
+  const decoded = jwt.verify(token, process.env.JWT_SECRET, (err, token) => {
+    if (err) return next(new AppError(401, "Invalid token, please login!"));
+    return token;
+  });
+  console.log(decoded);
+  const user = await User.findById(decoded.id).select("-password");
+  if (!user)
+    return next(new AppError(401, "User deleted profile, please login!"));
+  if (!user.checkPasswordChange())
+    return next(
+      new AppError(401, "Password changed in meantime, please login again!")
+    );
+
+  return res.status(200).json({
+    user,
+  });
+});

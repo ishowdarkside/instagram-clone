@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import styles from "./Signup.module.scss";
-import { useForm } from "react-hook-form";
 import { useSignup } from "../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import styles from "./Signup.module.scss";
+import Spinner from "../ui/Spinner/Spinner";
 export default function Signup() {
   const {
     register,
@@ -10,7 +11,7 @@ export default function Signup() {
   } = useForm();
 
   const { mutate, isLoading } = useSignup();
-
+  if (isLoading) return <Spinner />;
   return (
     <div className={styles.signupBody}>
       <form onSubmit={handleSubmit((data) => mutate(data))}>

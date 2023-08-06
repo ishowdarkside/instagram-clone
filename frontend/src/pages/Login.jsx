@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styles from "./Login.module.scss";
 import { useLogin } from "../hooks/useAuth";
+import Spinner from "../ui/Spinner/Spinner";
 export default function Login() {
   const { mutate, isLoading } = useLogin();
   const {
@@ -10,6 +11,7 @@ export default function Login() {
     formState: { isValid },
   } = useForm();
 
+  if (isLoading) return <Spinner />;
   return (
     <div className={styles.loginBody}>
       <form onSubmit={handleSubmit((data) => mutate(data))}>
