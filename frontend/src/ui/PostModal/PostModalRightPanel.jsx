@@ -3,8 +3,13 @@ import { usePostContext } from "../../context/ActivePost";
 import { AiOutlineMore } from "react-icons/ai";
 import styles from "./Postmodal.module.scss";
 import { convertDate } from "../../services/convertDate";
-import { useCommentPost, useGetPost } from "../../hooks/usePostActions";
+import {
+  useCommentPost,
+  useDeleteComment,
+  useGetPost,
+} from "../../hooks/usePostActions";
 import { useState } from "react";
+import { useProtect } from "../../hooks/useProtect";
 import Spinner from "../Spinner/Spinner";
 
 export default function PostModalRightPanel() {
@@ -53,8 +58,25 @@ function Comments({ comments }) {
 }
 
 function Comment({ comment }) {
+  const {
+    data: { user },
+  } = useProtect();
+
+  const {
+    state: { activePost },
+  } = usePostContext();
+  const { mutate } = useDeleteComment();
+  function handleDeleteComment() {
+    mutate({ postId: activePost._id, commentId: comment._id });
+  }
+
   return (
     <div className={styles.comment}>
+      {user._id === comment.creator._id && (
+        <button className={styles.deleteComment} onClick={handleDeleteComment}>
+          <img src="/x-thin.svg" alt="remove " />
+        </button>
+      )}
       <img
         src={`http://127.0.0.1:3000/${comment.creator.profilePicture}`}
         alt="profile avatar"
@@ -74,6 +96,11 @@ function ActionPanel({ post }) {
   const { likes, createdAt, _id } = post;
   const [comm, setComm] = useState("");
   const { mutate } = useCommentPost();
+
+  function handlePostComment() {
+    mutate({ postId: _id, comment: comm });
+    setComm("");
+  }
 
   return (
     <div className={styles.actionWrapper}>
@@ -95,14 +122,7 @@ function ActionPanel({ post }) {
           value={comm}
           onChange={(e) => setComm(e.target.value)}
         ></textarea>
-        <button
-          onClick={() => {
-            mutate({ postId: _id, comment: comm });
-            setComm("");
-          }}
-        >
-          Post
-        </button>
+        <button onClick={handlePostComment}>Post</button>
       </div>
     </div>
   );
