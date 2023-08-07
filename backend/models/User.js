@@ -60,6 +60,11 @@ const userSchema = new mongoose.Schema(
     description: { type: String },
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    isPrivate: {
+      type: Boolean,
+      default: false,
+    },
+    requests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

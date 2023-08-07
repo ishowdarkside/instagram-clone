@@ -54,7 +54,6 @@ export function useLikePost() {
 }
 
 export function useDeletePost() {
-  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: (postId) => deletePost(postId),
     onSuccess: () => {

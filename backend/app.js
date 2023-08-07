@@ -11,6 +11,7 @@ const errorMiddleware = require(path.join(
 const app = express();
 const authRouter = require(path.join(__dirname, "routes", "authRouter"));
 const postRouter = require(path.join(__dirname, "routes", "PostRouter"));
+const userRouter = require(path.join(__dirname, "routes", "userRouter"));
 
 //serving static files
 app.use(express.static(path.join(__dirname, "public")));
@@ -24,6 +25,7 @@ app.use(cors());
 //Routing for signup/login
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
+app.use("/api/users", userRouter);
 
 app.use(errorMiddleware);
 

@@ -65,6 +65,13 @@
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 3.2rem !important;
+    height: 3.2rem !important;
+  }
 }
 
 .postWrapper {
@@ -85,6 +92,11 @@
     width: 100%;
     height: 100%;
     position: absolute;
+    background-image: linear-gradient(
+      to right,
+      rgba(#000, 0.7),
+      rgba(#000, 0.7)
+    );
 
     display: none;
     align-items: center;
@@ -98,23 +110,13 @@
     font-weight: 500;
     font-size: 1.6rem;
   }
-
-  div {
-    height: 27rem;
-
-    &:hover {
-      background-image: linear-gradient(
-        to right,
-        rgba(#000, 0.7),
-        rgba(#000, 0.7)
-      );
-    }
-  }
 }
 
 .postLayer {
+  height: 27rem;
   position: relative;
   cursor: pointer;
+
   &:hover .postOverlay {
     display: flex;
   }
