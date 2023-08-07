@@ -14,6 +14,7 @@ const {
   likePost,
   commentPost,
   deleteComment,
+  getPost,
 } = require(path.join(__dirname, "..", "controllers", "postController"));
 
 const upload = multer({ storage: multer.memoryStorage() });
@@ -23,4 +24,5 @@ router.delete("/delete-post/:postId", protect, deletePost);
 router.patch("/like-post/:postId", protect, likePost);
 router.post("/comment-post/:postId", protect, commentPost);
 router.delete("/delete-comment/:postId", protect, deleteComment);
+router.get("/post/:postId", protect, getPost);
 module.exports = router;

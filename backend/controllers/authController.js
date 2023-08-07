@@ -108,7 +108,18 @@ exports.verify = catchAsync(async (req, res, next) => {
 
   const user = await User.findById(decoded.id)
     .select("-password")
-    .populate("posts");
+    .populate({
+      path: "posts",
+      populate: {
+        path: "creator",
+        select: "profilePicture username",
+      },
+      populate: {
+        path: "comments.creator",
+        select: "username profilePicture",
+      },
+    })
+    .populate({ path: "posts", populate: { path: "comments creator" } });
   if (!user)
     return next(new AppError(401, "User deleted profile, please login!"));
   if (!user.checkPasswordChange())

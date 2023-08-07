@@ -4,7 +4,7 @@ import styles from "./Modal.module.scss";
 import { IoCloseSharp } from "react-icons/io5";
 import { createPortal } from "react-dom";
 export default function Modal({ children }) {
-  const { dispatch, state } = usePostContext();
+  const { dispatch } = usePostContext();
 
   return createPortal(
     <div
