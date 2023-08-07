@@ -9,9 +9,12 @@ export default function Protect({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoading && !data.user) navigate("/login");
+    //ako je data null
+    if (!isLoading && !data) navigate("/login");
+    //ako nema usera na responsu
+    if (data && !isLoading && !data.user) navigate("/login");
   }, [isLoading, data, navigate]);
 
   if (isLoading) return <Spinner />;
-  if (data.user && !isLoading) return children;
+  if (data && data.user && !isLoading) return children;
 }

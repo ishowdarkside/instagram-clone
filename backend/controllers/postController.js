@@ -89,9 +89,10 @@ exports.deleteComment = catchAsync(async (req, res, next) => {
 });
 
 exports.getPost = catchAsync(async (req, res, next) => {
-  const post = await Post.findById(req.params.postId)
-    .populate("likes")
-    .populate({ path: "comments.creator", select: "username profilePicture" });
+  const post = await Post.findById(req.params.postId).populate({
+    path: "comments.creator",
+    select: "username profilePicture",
+  });
   return res.status(200).json({
     post,
   });

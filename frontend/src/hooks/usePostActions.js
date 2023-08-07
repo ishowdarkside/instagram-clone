@@ -1,4 +1,9 @@
-import { commentPost, deleteComment, getPost } from "../services/postFunctions";
+import {
+  commentPost,
+  deleteComment,
+  getPost,
+  likePost,
+} from "../services/postFunctions";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 export function useCommentPost() {
@@ -30,6 +35,18 @@ export function useDeleteComment() {
     mutationFn: ({ postId, commentId }) => deleteComment(postId, commentId),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["post"] }),
     onError: (err) => toast.error(err.message),
+  });
+
+  return { mutate };
+}
+
+export function useLikePost() {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: (postId) => likePost(postId),
+    onSuccess: (res) => {
+      if (res.status === "success") queryClient.invalidateQueries(["post"]);
+    },
   });
 
   return { mutate };
