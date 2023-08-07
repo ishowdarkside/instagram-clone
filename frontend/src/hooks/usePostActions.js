@@ -1,6 +1,7 @@
 import {
   commentPost,
   deleteComment,
+  deletePost,
   getPost,
   likePost,
 } from "../services/postFunctions";
@@ -49,5 +50,19 @@ export function useLikePost() {
     },
   });
 
+  return { mutate };
+}
+
+export function useDeletePost() {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: (postId) => deletePost(postId),
+    onSuccess: () => {
+      //ne mogu invalidate-at post u ovom trenutku jer kad invalidate-ujem onda bude null
+      //sto znaci da nakon birsanja posta, ak udjem u drugi post, onda ce da post bude null, nece opet fetchovat jer vec ima cachovano null
+      //zato treba bez invalidacije
+      // queryClient.invalidateQueries(["post"]);
+    },
+  });
   return { mutate };
 }

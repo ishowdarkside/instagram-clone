@@ -66,3 +66,16 @@ export async function likePost(postId) {
     throw new Error(err);
   }
 }
+
+export async function deletePost(postId) {
+  try {
+    await fetch(`${BASE_URL}/api/posts/delete-post/${postId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (err) {
+    throw new Error(err);
+  }
+}
