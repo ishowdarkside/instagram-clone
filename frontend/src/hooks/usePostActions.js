@@ -12,8 +12,10 @@ export function useCommentPost() {
   const { mutate } = useMutation({
     mutationFn: ({ postId, comment }) => commentPost(postId, comment),
     onSuccess: (res) => {
-      if (res.status === "success")
+      if (res.status === "success") {
         queryClient.invalidateQueries({ queryKey: ["post"] });
+        queryClient.invalidateQueries({ queryKey: ["feed"] });
+      }
     },
     onError: (err) => toast.error(err.message),
   });
@@ -46,7 +48,10 @@ export function useLikePost() {
   const { mutate } = useMutation({
     mutationFn: (postId) => likePost(postId),
     onSuccess: (res) => {
-      if (res.status === "success") queryClient.invalidateQueries(["post"]);
+      if (res.status === "success") {
+        queryClient.invalidateQueries(["post"]);
+        queryClient.invalidateQueries({ queryKey: ["feed"] });
+      }
     },
   });
 

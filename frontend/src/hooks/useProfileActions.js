@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import {
   acceptRequest,
   declineRequest,
@@ -8,6 +9,7 @@ import {
 } from "../services/profileFunctions";
 import { toast } from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import { getFeed } from "../services/postFunctions";
 
 export function useGetProfile() {
   const { profileId } = useParams();
@@ -63,9 +65,21 @@ export function useDeclineRequest() {
 }
 
 export function useSearchUsers(input) {
+  const { data, isLoading } = useQuery(
+    {
+      queryKey: ["searchResults", input],
+      queryFn: () => searchUsers(input),
+    },
+    { staleTime: Infinity, keepPreviousData: true }
+  );
+
+  return { data, isLoading };
+}
+
+export function useGetFeed() {
   const { data, isLoading } = useQuery({
-    queryKey: ["searchResults", input],
-    queryFn: () => searchUsers(input),
+    queryKey: ["feed"],
+    queryFn: getFeed,
   });
 
   return { data, isLoading };

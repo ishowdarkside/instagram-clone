@@ -1,0 +1,91 @@
+.feedWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  width: 80rem;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 10rem 0;
+}
+
+.noPosts {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  align-items: center;
+  text-align: center;
+  img {
+    max-width: 10rem;
+    width: 10rem;
+  }
+}
+
+.postContainer {
+  max-width: fit-content;
+  position: relative;
+  img {
+    width: 50rem;
+    max-width: 50rem;
+    height: 50rem;
+    max-height: 50rem;
+    object-fit: cover;
+  }
+
+  .tempLike {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 30rem;
+    height: 30rem;
+  }
+}
+
+.userInfo {
+  padding: 1rem;
+  border-radius: 5px;
+  max-width: 50rem;
+  border: 1px solid #efefef;
+  img {
+    max-width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  a {
+    text-decoration: none;
+    display: flex;
+    gap: 1rem;
+    color: #000;
+    font-weight: 600;
+    align-items: center;
+  }
+}
+
+.actionPanel {
+  padding: 0 0 2rem 0;
+}
+.buttonWrapper {
+  display: flex;
+  gap: 1rem;
+
+  button {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    img {
+      max-width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+}
+
+.viewComments {
+  color: #737373;
+  cursor: pointer;
+}

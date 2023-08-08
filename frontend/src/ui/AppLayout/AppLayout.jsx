@@ -23,7 +23,9 @@ export default function AppLayout() {
 
   return (
     <div className={styles.layout}>
-      <Sidebar />
+      <div className={styles.sidebarShallow}>
+        <Sidebar />
+      </div>
       <Outlet />
     </div>
   );

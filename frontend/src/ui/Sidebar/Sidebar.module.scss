@@ -23,7 +23,15 @@
   }
 }
 
+.sidebarShallow {
+  background-color: red;
+}
+
 .sidebar {
+  position: fixed;
+  width: 30rem;
+  top: 0;
+  height: 100vh;
   padding: 5rem 3rem;
   border-right: 1px solid #dbdbdb;
 

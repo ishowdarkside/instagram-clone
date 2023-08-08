@@ -79,3 +79,17 @@ export async function deletePost(postId) {
     throw new Error(err);
   }
 }
+
+export async function getFeed() {
+  try {
+    const res = await fetch(`${BASE_URL}/api/posts/feed`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await res.json();
+    return data.posts;
+  } catch (err) {
+    throw new Error(err);
+  }
+}

@@ -97,3 +97,15 @@ exports.getPost = catchAsync(async (req, res, next) => {
     post,
   });
 });
+
+exports.getPostsFromFollowings = catchAsync(async (req, res, next) => {
+  const posts = await Post.find({
+    creator: { $in: req.user.following },
+  })
+    .populate({ path: "creator", select: "profilePicture username" })
+    .sort({ createdAt: -1 });
+  return res.status(200).json({
+    status: "success",
+    posts,
+  });
+});

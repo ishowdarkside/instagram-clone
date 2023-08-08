@@ -15,6 +15,7 @@ const {
   commentPost,
   deleteComment,
   getPost,
+  getPostsFromFollowings,
 } = require(path.join(__dirname, "..", "controllers", "postController"));
 
 const upload = multer({ storage: multer.memoryStorage() });
@@ -25,4 +26,5 @@ router.patch("/like-post/:postId", protect, likePost);
 router.post("/comment-post/:postId", protect, commentPost);
 router.delete("/delete-comment/:postId", protect, deleteComment);
 router.get("/post/:postId", protect, getPost);
+router.get("/feed", protect, getPostsFromFollowings);
 module.exports = router;
