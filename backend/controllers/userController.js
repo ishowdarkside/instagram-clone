@@ -48,7 +48,10 @@ exports.followUser = catchAsync(async (req, res, next) => {
 
 exports.getSpecificUser = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.params.userId)
-    .populate("posts")
+    .populate({
+      path: "posts",
+      populate: { path: "creator", select: "profilePicture username" },
+    })
     .populate({ path: "followers", select: "username profilePicture" })
     .populate({ path: "following", select: "username profilePicture" })
     .select("-password -passwordChangedAt");
