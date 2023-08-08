@@ -26,8 +26,9 @@ export default function ActionPanel({ post }) {
   function handleLikePost() {
     likePost(_id, {
       onSuccess: () => {
-        console.log(post.creator, user._id);
-        if (post.creator === user._id) queryClient.invalidateQueries(["user"]);
+        if (post.creator === user._id)
+          return queryClient.invalidateQueries(["user"]);
+        return queryClient.invalidateQueries(["profile"]);
       },
     });
   }

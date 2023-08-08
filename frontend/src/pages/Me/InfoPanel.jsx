@@ -24,7 +24,7 @@ export default function InfoPanel() {
             <b>{user.followers.length}</b> followers
           </span>
           <span>
-            <b>{user.following.length}</b> followings
+            <b>{user.following.length}</b> following
           </span>
         </div>
         <div className={styles.thirdRow}>

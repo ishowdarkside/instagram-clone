@@ -1,0 +1,158 @@
+.errorMsg {
+  font-size: 3rem;
+  font-weight: 500;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profilePanel {
+  width: 85rem;
+  max-width: 85rem;
+  padding: 3rem 0;
+  margin: 0 auto;
+  position: relative;
+}
+
+// Profile Info Panel (component)
+.infoPanel {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  gap: 5rem;
+  max-width: 40rem;
+
+  img {
+    max-width: 10rem;
+  }
+
+  .username {
+    font-size: 1.9rem;
+  }
+
+  .info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .firstRow {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    button {
+      padding: 0.5rem 1.5rem;
+      border: none;
+      outline: none;
+      background-color: #efefef;
+      border-radius: 1rem;
+      font-weight: 500;
+      font-size: 1.3rem;
+    }
+  }
+
+  .secondRow {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .thirdRow {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    .fullName {
+      font-weight: 500;
+    }
+  }
+
+  .followBtn {
+    padding: 0.6rem;
+    margin-top: 1rem;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: #0095f6;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+  }
+
+  .isActive {
+    background-color: #efefef !important;
+    color: #000 !important;
+    font-weight: 600;
+  }
+}
+
+//message for private accs
+.isPrivate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+//message for no posts
+.noPosts {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+//css for posts panel
+
+.postWrapper {
+  margin-top: 10rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 27rem));
+  gap: 1rem;
+  img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+
+  .postOverlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: linear-gradient(
+      to right,
+      rgba(#000, 0.7),
+      rgba(#000, 0.7)
+    );
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    img {
+      width: 32px;
+      height: 32px;
+    }
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.6rem;
+  }
+}
+
+.postLayer {
+  height: 27rem;
+  position: relative;
+  cursor: pointer;
+
+  &:hover .postOverlay {
+    display: flex;
+  }
+}

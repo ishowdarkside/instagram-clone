@@ -122,7 +122,9 @@ exports.verify = catchAsync(async (req, res, next) => {
     .populate({
       path: "posts",
       populate: { path: "comments creator", select: "username profilePicture" },
-    });
+    })
+    .populate({ path: "following", select: "username profilePicture" })
+    .populate({ path: "followers", select: "profilePicture username" });
   if (!user)
     return next(new AppError(401, "User deleted profile, please login!"));
   if (!user.checkPasswordChange())

@@ -10,6 +10,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Protect from "./ui/Protect/Protect";
 import Me from "./pages/Me/Me";
 import Explore from "./pages/Explore/Explore";
+import Profile from "./pages/Profile/Profile";
 
 const queryClient = new QueryClient();
 export default function App() {
@@ -34,6 +35,7 @@ export default function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="me" element={<Me />} />
             <Route path="explore" element={<Explore />} />
+            <Route path="profile/:profileId" element={<Profile />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -65,6 +65,7 @@ const userSchema = new mongoose.Schema(
       default: false,
     },
     requests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    madeRequests: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   { timestamps: true }
 );

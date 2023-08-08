@@ -6,12 +6,20 @@ import { useProtect } from "../../hooks/useProtect";
 import { usePostContext } from "../../context/ActivePost";
 import { useDeletePost } from "../../hooks/usePostActions";
 import { useQueryClient } from "@tanstack/react-query";
+import { useGetProfile } from "../../hooks/useProfileActions";
+import { useParams } from "react-router-dom";
 export default function Creator({ creator }) {
   const [isOptionsActive, setIsOptionsActive] = useState(false);
+  const { profileId } = useParams();
   const queryClient = useQueryClient();
   const {
     data: { user },
   } = useProtect();
+
+  const {
+    data: { user: profile },
+  } = useGetProfile(profileId);
+  console.log(profile);
   const {
     state: { activePost },
     dispatch,
@@ -22,6 +30,10 @@ export default function Creator({ creator }) {
     mutate(activePost._id, {
       onSuccess: () => {
         //dodati kasnije ovdje ako je creator === specificProfile onda invalidate specific Profile
+
+        if (activePost.creator._id === profile._id)
+          queryClient.invalidateQueries(["profile"]);
+
         if (activePost.creator._id === user._id)
           queryClient.invalidateQueries(["user"]);
         dispatch({ type: "reset" });
