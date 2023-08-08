@@ -8,6 +8,7 @@ import ProfilePosts from "./ProfilePosts";
 import { usePostContext } from "../../context/ActivePost";
 import Modal from "../../ui/Modal/Modal";
 import PostModal from "../../ui/PostModal/PostModal";
+import HasRequested from "./HasRequested";
 
 export default function Profile() {
   const { profileId } = useParams();
@@ -28,6 +29,7 @@ export default function Profile() {
 
   return (
     <div className={styles.profilePanel}>
+      {user.requests.some((el) => el._id === profileId) && <HasRequested />}
       <ProfileInfoPanel profile={data.user} />
       <ProfilePosts />
       {state.isOpenModal && <Modal>{<PostModal />}</Modal>}

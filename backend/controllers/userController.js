@@ -79,3 +79,21 @@ exports.getSpecificUser = catchAsync(async (req, res, next) => {
     user,
   });
 });
+
+exports.acceptRequest = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.profileId);
+  const me = await User.findById(req.user.id);
+
+  if (!me.requests.some((el) => el.equals(user.id)))
+    return next(new AppError(400, "User didn't request to follow you"));
+  me.requests = me.requests.filter((e) => !e.equals(user.id));
+  me.followers.push(user.id);
+  user.madeRequests = user.madeRequests.filter((e) => !e.equals(me.id));
+  user.following.push(me.id);
+  await user.save({ validateBeforeSave: false });
+  await me.save({ validateBeforeSave: false });
+  return res.status(200).json({
+    status: "success",
+    message: "Accepted request!",
+  });
+});

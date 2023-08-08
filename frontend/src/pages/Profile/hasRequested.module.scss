@@ -1,0 +1,25 @@
+.hasRequested {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+    button {
+      padding: 0.5rem 3rem;
+      border: none;
+      cursor: pointer;
+      background-color: #efefef;
+      font-weight: 500;
+      outline: none;
+      border-radius: 5px;
+      &:first-of-type {
+        background-color: #0095f6;
+        color: #ffff;
+      }
+    }
+  }
+}

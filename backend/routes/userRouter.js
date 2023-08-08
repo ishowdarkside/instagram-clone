@@ -7,7 +7,7 @@ const { protect } = require(path.join(
   "controllers",
   "authController.js"
 ));
-const { followUser, getSpecificUser } = require(path.join(
+const { followUser, getSpecificUser, acceptRequest } = require(path.join(
   __dirname,
   "..",
   "controllers",
@@ -16,4 +16,5 @@ const { followUser, getSpecificUser } = require(path.join(
 
 router.patch("/followUser/:userId", protect, followUser);
 router.get("/getUser/:userId", protect, getSpecificUser);
+router.patch("/acceptRequest/:profileId", protect, acceptRequest);
 module.exports = router;

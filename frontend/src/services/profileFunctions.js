@@ -26,3 +26,21 @@ export async function followProfile(profileId) {
     throw new Error(err);
   }
 }
+
+export async function acceptRequest(profileId) {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/api/users/acceptRequest/${profileId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw new Error(err);
+  }
+}

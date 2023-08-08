@@ -32,8 +32,6 @@ export default function Creator({ creator }) {
 
   const { user } = userData;
 
-  console.log(activePost);
-
   return (
     <div className={styles.creatorPanel}>
       <div>
