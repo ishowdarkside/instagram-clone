@@ -17,6 +17,7 @@ export default function Posts() {
   } = useGetProfile(profileId);
 
   if (isLoading) return <Spinner />;
+  if (!user) return null;
   if (user.isPrivate && !user.followers?.some((el) => el._id === me._id))
     return <Private />;
   return (

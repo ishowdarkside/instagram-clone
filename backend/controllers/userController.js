@@ -110,3 +110,24 @@ exports.declineRequest = catchAsync(async (req, res, next) => {
     message: "Request declined",
   });
 });
+
+exports.searchUsers = catchAsync(async (req, res, next) => {
+  const { input } = req.body;
+  if (input === "")
+    return res.status(200).json({
+      status: "success",
+      users: [],
+    });
+  const users = await User.find({
+    $or: [
+      { username: { $regex: input, $options: "i" } },
+      { fisrtName: { $regex: input, $options: "i" } },
+      { lastName: { $regex: input, $options: "i" } },
+    ],
+  }).select("username profilePicture firstName lastName");
+
+  return res.status(200).json({
+    status: "success",
+    users,
+  });
+});

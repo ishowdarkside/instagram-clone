@@ -9,6 +9,7 @@ import { usePostContext } from "../../context/ActivePost";
 import Modal from "../../ui/Modal/Modal";
 import PostModal from "../../ui/PostModal/PostModal";
 import HasRequested from "./HasRequested";
+import { useEffect } from "react";
 
 export default function Profile() {
   const { profileId } = useParams();
@@ -19,13 +20,15 @@ export default function Profile() {
     isLoading: isLoadingUser,
   } = useProtect();
 
+  useEffect(() => {
+    if (user._id === profileId) return navigate("/app/me");
+  }, [profileId]);
+
   const { data, isLoading: isLoadingProfile } = useGetProfile(profileId);
   if (isLoadingProfile || isLoadingUser) return <Spinner />;
 
   if (data.status === "fail")
     return <span className={styles.errorMsg}>{data.message}</span>;
-
-  if (user._id === profileId) return navigate("/app/me");
 
   return (
     <div className={styles.profilePanel}>

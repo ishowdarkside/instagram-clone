@@ -62,3 +62,22 @@ export async function declineRequest(profileId) {
     throw new Error(err);
   }
 }
+
+export async function searchUsers(input) {
+  try {
+    const res = await fetch(`${BASE_URL}/api/users/search`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        input,
+      }),
+    });
+    const data = await res.json();
+    return data.users;
+  } catch (err) {
+    throw new Error(err);
+  }
+}

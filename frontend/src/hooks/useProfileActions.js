@@ -4,6 +4,7 @@ import {
   declineRequest,
   followProfile,
   getProfile,
+  searchUsers,
 } from "../services/profileFunctions";
 import { toast } from "react-hot-toast";
 import { useParams } from "react-router-dom";
@@ -38,6 +39,7 @@ export function useAcceptRequest() {
       if (res.status === "success") {
         toast.success(res.message);
         queryClient.invalidateQueries({ queryKey: ["user"] });
+        queryClient.invalidateQueries({ queryKey: ["profile"] });
       }
     },
   });
@@ -58,4 +60,13 @@ export function useDeclineRequest() {
   });
 
   return { mutate };
+}
+
+export function useSearchUsers(input) {
+  const { data, isLoading } = useQuery({
+    queryKey: ["searchResults", input],
+    queryFn: () => searchUsers(input),
+  });
+
+  return { data, isLoading };
 }

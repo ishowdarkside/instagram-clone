@@ -10,6 +10,7 @@ export default function InfoPanel({ profile }) {
   } = useProtect();
   const { mutate: followProfile } = useFollowProfile();
 
+  if (!profile) return null;
   const postCount = profile.posts?.length ?? profile.postCount;
   const followersCount = profile.followers?.length ?? profile.followersCount;
   const followingCount = profile.following?.length ?? profile.followingCount;
