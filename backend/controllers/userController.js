@@ -97,3 +97,16 @@ exports.acceptRequest = catchAsync(async (req, res, next) => {
     message: "Accepted request!",
   });
 });
+
+exports.declineRequest = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.profileId);
+  const me = await User.findById(req.user.id);
+  me.requests = me.requests.filter((e) => !e.equals(user.id));
+  user.madeRequests = user.madeRequests.filter((e) => !e.equals(me.id));
+  await me.save({ validateBeforeSave: false });
+  await user.save({ validateBeforeSave: false });
+  return res.status(200).json({
+    status: "success",
+    message: "Request declined",
+  });
+});

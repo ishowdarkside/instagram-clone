@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   acceptRequest,
+  declineRequest,
   followProfile,
   getProfile,
 } from "../services/profileFunctions";
@@ -40,5 +41,21 @@ export function useAcceptRequest() {
       }
     },
   });
+  return { mutate };
+}
+
+export function useDeclineRequest() {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: (profileId) => declineRequest(profileId),
+    onSuccess: (res) => {
+      if (res.status === "success") {
+        toast.success(res.message);
+        queryClient.invalidateQueries(["user"]);
+        queryClient.invalidateQueries(["profile"]);
+      }
+    },
+  });
+
   return { mutate };
 }
