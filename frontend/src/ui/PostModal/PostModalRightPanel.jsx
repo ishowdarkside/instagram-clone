@@ -15,7 +15,7 @@ export default function PostModalRightPanel() {
 
   if (isLoading) return <Spinner />;
   const { post } = data;
-
+  if (!post) return null;
   return (
     <div className={styles.rightPanel}>
       <Creator creator={activePost.creator} />

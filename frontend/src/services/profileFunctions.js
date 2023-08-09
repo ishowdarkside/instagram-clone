@@ -1,6 +1,7 @@
 const BASE_URL = "http://127.0.0.1:3000";
-const token = localStorage.getItem("jwt");
+
 export async function getProfile(profileId) {
+  const token = localStorage.getItem("jwt");
   try {
     const res = await fetch(`${BASE_URL}/api/users/getUser/${profileId}`, {
       headers: {
@@ -15,6 +16,7 @@ export async function getProfile(profileId) {
 }
 
 export async function followProfile(profileId) {
+  const token = localStorage.getItem("jwt");
   try {
     await fetch(`${BASE_URL}/api/users/followUser/${profileId}`, {
       method: "PATCH",
@@ -28,6 +30,7 @@ export async function followProfile(profileId) {
 }
 
 export async function acceptRequest(profileId) {
+  const token = localStorage.getItem("jwt");
   try {
     const res = await fetch(
       `${BASE_URL}/api/users/acceptRequest/${profileId}`,
@@ -46,6 +49,7 @@ export async function acceptRequest(profileId) {
 }
 
 export async function declineRequest(profileId) {
+  const token = localStorage.getItem("jwt");
   try {
     const res = await fetch(
       `${BASE_URL}/api/users/declineRequest/${profileId}`,
@@ -64,6 +68,7 @@ export async function declineRequest(profileId) {
 }
 
 export async function searchUsers(input) {
+  const token = localStorage.getItem("jwt");
   try {
     const res = await fetch(`${BASE_URL}/api/users/search`, {
       method: "POST",

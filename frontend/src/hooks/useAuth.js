@@ -27,10 +27,11 @@ export function useLogin() {
     mutationFn: login,
     onSuccess: (res) => {
       if (res.status === "success") {
-        toast.success(res.message);
         //store-aj token u localStorage
         localStorage.setItem("jwt", res.token);
-        return navigate("/app");
+        toast.success(res.message);
+
+        return navigate("/app/dashboard");
       }
       toast.error(res.message);
     },

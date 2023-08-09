@@ -2,7 +2,11 @@
 import { createContext, useContext, useReducer } from "react";
 
 const activePost = createContext();
-const initialState = { isOpenModal: false, activePost: null };
+const initialState = {
+  isOpenModal: false,
+  activePost: null,
+  isOpenPostModal: false,
+};
 
 function reducer(state, action) {
   switch (action.type) {
@@ -10,6 +14,8 @@ function reducer(state, action) {
       return { ...state, isOpenModal: true, activePost: action.payload };
     case "reset":
       return initialState;
+    case "openPostModal":
+      return { ...state, isOpenPostModal: true };
     default:
       throw new Error("UNKOWN ACTION TYPE");
   }

@@ -11,6 +11,7 @@ export default function Dashboard() {
     state: { isOpenModal },
   } = usePostContext();
   if (isLoading) return <Spinner />;
+
   if (data.length === 0)
     return (
       <div className={styles.noPosts}>

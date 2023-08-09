@@ -1,0 +1,57 @@
+.modalWrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  span {
+    display: block;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      &:first-of-type {
+        display: none;
+      }
+    }
+
+    label {
+      padding: 1rem 2rem;
+      background-color: #0095f6;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 1rem;
+    }
+
+    input {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: none;
+      outline: none;
+      background-color: #f1f1f1;
+      width: 30rem;
+      border-radius: 5px;
+    }
+
+    button {
+      align-self: flex-end;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      outline: none;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
+      border: 1px solid #0095f6;
+      color: #0095f6;
+      background-color: transparent;
+    }
+  }
+}

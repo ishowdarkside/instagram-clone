@@ -60,6 +60,7 @@ exports.protect = catchAsync(async (req, res, next) => {
       return token;
     }
   );
+
   const user = await User.findById(decoded.id);
   if (!user)
     return next(new AppError(401, "User deleted profile, please login!"));

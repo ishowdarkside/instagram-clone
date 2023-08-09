@@ -4,7 +4,6 @@ import styles from "./Dashboard.module.scss";
 import { useProtect } from "../../hooks/useProtect";
 import { usePostContext } from "../../context/ActivePost";
 import { useLikePost } from "../../hooks/usePostActions";
-import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 export default function FeedPost({ post }) {
   const { mutate: likePost } = useLikePost();
@@ -19,7 +18,9 @@ export default function FeedPost({ post }) {
   return (
     <div className={styles.postContainer}>
       <UserInfo creator={post.creator} />
-      {hasLiked && <img src="/heart-fill.svg" alt="heart" className={styles.tempLike}/>}
+      {hasLiked && (
+        <img src="/heart-fill.svg" alt="heart" className={styles.tempLike} />
+      )}
       {post.images.map((i) => (
         <Image imgSrc={i} key={i} onDoubleClick={handleLike} />
       ))}
@@ -54,7 +55,7 @@ function UserInfo({ creator }) {
 
 function ActionaPanel({ post }) {
   const { dispatch } = usePostContext();
-  const queryClient = useQueryClient();
+
   const { mutate: likePost } = useLikePost();
   const {
     data: { user },
@@ -82,6 +83,12 @@ function ActionaPanel({ post }) {
           <img src="/chat-circle-thin.svg" alt="comment" />
         </button>
       </div>
+      {post.description && (
+        <span>
+          <b>{post.creator.username} </b>
+          {post.description}
+        </span>
+      )}
       <span
         className={styles.viewComments}
         onClick={() => dispatch({ type: "setActivePost", payload: post })}

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import styles from "./Sidebar.module.scss";
+import { usePostContext } from "../../context/ActivePost";
 export default function SidebarList({
   activeTab,
   setActiveTab,
@@ -8,6 +9,7 @@ export default function SidebarList({
   user,
   setIsSearchActive,
 }) {
+  const { dispatch } = usePostContext();
   const navigate = useNavigate();
   return (
     <ul className={styles.sidebarList}>
@@ -71,7 +73,10 @@ export default function SidebarList({
       </li>
       <li
         className={activeTab === "create" ? styles.active : ""}
-        onClick={() => setActiveTab("create")}
+        onClick={() => {
+          setActiveTab("create");
+          dispatch({ type: "openPostModal" });
+        }}
       >
         <img
           src={`/create-${activeTab === "create" ? "fill" : "thin"}.svg`}

@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import styles from "./AppLayout.module.scss";
-
 import { usePostContext } from "../../context/ActivePost";
 import { useEffect } from "react";
 

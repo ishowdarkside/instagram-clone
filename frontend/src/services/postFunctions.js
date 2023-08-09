@@ -1,7 +1,8 @@
+import axios from "axios";
 const BASE_URL = "http://127.0.0.1:3000";
 
-const token = localStorage.getItem("jwt");
 export async function commentPost(postId, comment) {
+  const token = localStorage.getItem("jwt");
   try {
     const res = await fetch(`${BASE_URL}/api/posts/comment-post/${postId}`, {
       method: "POST",
@@ -21,6 +22,7 @@ export async function commentPost(postId, comment) {
 }
 
 export async function deleteComment(postId, commentId) {
+  const token = localStorage.getItem("jwt");
   try {
     await fetch(`${BASE_URL}/api/posts/delete-comment/${postId}`, {
       method: "DELETE",
@@ -39,6 +41,7 @@ export async function deleteComment(postId, commentId) {
 }
 
 export async function getPost(postId) {
+  const token = localStorage.getItem("jwt");
   try {
     const res = await fetch(`${BASE_URL}/api/posts/post/${postId}`, {
       headers: {
@@ -53,6 +56,7 @@ export async function getPost(postId) {
 }
 
 export async function likePost(postId) {
+  const token = localStorage.getItem("jwt");
   try {
     const res = await fetch(`${BASE_URL}/api/posts/like-post/${postId}`, {
       method: "PATCH",
@@ -68,6 +72,7 @@ export async function likePost(postId) {
 }
 
 export async function deletePost(postId) {
+  const token = localStorage.getItem("jwt");
   try {
     await fetch(`${BASE_URL}/api/posts/delete-post/${postId}`, {
       method: "DELETE",
@@ -81,6 +86,8 @@ export async function deletePost(postId) {
 }
 
 export async function getFeed() {
+  const token = localStorage.getItem("jwt");
+
   try {
     const res = await fetch(`${BASE_URL}/api/posts/feed`, {
       headers: {
@@ -89,6 +96,24 @@ export async function getFeed() {
     });
     const data = await res.json();
     return data.posts;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+export async function createPost(data) {
+  const token = localStorage.getItem("jwt");
+  try {
+    const res = await axios({
+      url: `${BASE_URL}/api/posts/create-post`,
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+      data,
+    });
+    return res.data;
   } catch (err) {
     throw new Error(err);
   }
