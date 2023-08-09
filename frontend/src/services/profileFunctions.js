@@ -1,3 +1,4 @@
+import axios from "axios";
 const BASE_URL = "http://127.0.0.1:3000";
 
 export async function getProfile(profileId) {
@@ -82,6 +83,37 @@ export async function searchUsers(input) {
     });
     const data = await res.json();
     return data.users;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+export async function getCEO() {
+  const token = localStorage.getItem("jwt");
+  try {
+    const res = await fetch(`${BASE_URL}/api/users/getCEO`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw new Error(err);
+  }
+}
+
+export async function changeGeneralData(data) {
+  const token = localStorage.getItem("jwt");
+
+  try {
+    const res = await axios.patch(`${BASE_URL}/api/auth/changeData`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return res.data;
   } catch (err) {
     throw new Error(err);
   }

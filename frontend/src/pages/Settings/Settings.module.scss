@@ -1,0 +1,59 @@
+.settingsPanel {
+  width: 80rem;
+  padding: 20rem 0;
+  max-width: 80rem;
+  margin: 0 auto;
+  h2 {
+    margin-bottom: 2rem;
+  }
+}
+
+.generalForm {
+  img {
+    border-radius: 5rem;
+    max-width: 3.2rem;
+  }
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+
+  div {
+    display: flex;
+    &:first-of-type {
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
+    }
+    &:not(:first-of-type) {
+      flex-direction: column;
+    }
+
+    input {
+      padding: 1rem;
+      border-radius: 5ps;
+      border: none;
+      outline: none;
+      background-color: #efefef;
+    }
+  }
+  button {
+    padding: 1rem;
+    border: none;
+    outline: none;
+    background-color: #0095f6;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  select {
+    align-self: flex-start;
+  }
+}
+
+.fileInput {
+  display: none;
+}

@@ -13,10 +13,12 @@ const {
   acceptRequest,
   declineRequest,
   searchUsers,
+  getCEO,
 } = require(path.join(__dirname, "..", "controllers", "userController.js"));
 
 router.patch("/followUser/:userId", protect, followUser);
 router.get("/getUser/:userId", protect, getSpecificUser);
+router.get("/getCEO", protect, getCEO);
 router.patch("/acceptRequest/:profileId", protect, acceptRequest);
 router.patch("/declineRequest/:profileId", protect, declineRequest);
 router.post("/search", protect, searchUsers);

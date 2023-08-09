@@ -1,10 +1,11 @@
 import { useProtect } from "../../hooks/useProtect";
 import styles from "./Me.module.scss";
-
+import { useNavigate } from "react-router-dom";
 export default function InfoPanel() {
   const {
     data: { user },
   } = useProtect();
+  const navigate = useNavigate();
   return (
     <div className={styles.infoPanel}>
       <img
@@ -14,7 +15,9 @@ export default function InfoPanel() {
       <div className={styles.info}>
         <div className={styles.firstRow}>
           <span className={styles.username}>{user.username}</span>
-          <button>Edit Profile</button>
+          <button onClick={() => navigate("/app/settings")}>
+            Edit Profile
+          </button>
         </div>
         <div className={styles.secondRow}>
           <span>

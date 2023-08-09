@@ -131,3 +131,12 @@ exports.searchUsers = catchAsync(async (req, res, next) => {
     users,
   });
 });
+
+exports.getCEO = catchAsync(async (req, res, next) => {
+  const CEO = await User.findById("64cee56c455f180d921b3aa7").select(
+    "username profilePicture firstName lastName"
+  );
+  res.status(200).json({
+    CEO,
+  });
+});

@@ -2,8 +2,10 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import {
   acceptRequest,
+  changeGeneralData,
   declineRequest,
   followProfile,
+  getCEO,
   getProfile,
   searchUsers,
 } from "../services/profileFunctions";
@@ -83,4 +85,26 @@ export function useGetFeed() {
   });
 
   return { data, isLoading };
+}
+
+export function useGetCEO() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["ceo"],
+    queryFn: getCEO,
+  });
+  return { data, isLoading };
+}
+
+export function useChangeData() {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: (formData) => changeGeneralData(formData),
+    onSuccess: (res) => {
+      if (res.status === "success") {
+        toast.success(res.message);
+      }
+      queryClient.invalidateQueries(["user"]);
+    },
+  });
+  return { mutate };
 }

@@ -5,6 +5,7 @@ import styles from "./Dashboard.module.scss";
 import Spinner from "../../ui/Spinner/Spinner";
 import FeedPost from "./FeedPost";
 import { usePostContext } from "../../context/ActivePost";
+import Recommended from "./Recommended";
 export default function Dashboard() {
   const { data, isLoading } = useGetFeed();
   const {
@@ -14,10 +15,13 @@ export default function Dashboard() {
 
   if (data.length === 0)
     return (
-      <div className={styles.noPosts}>
-        <img src="/user-circle-plus-thin.svg" alt="explore users" />
-        <span>Follower users to start exploring their everyday lives!</span>
-      </div>
+      <>
+        <Recommended />
+        <div className={styles.noPosts}>
+          <img src="/user-circle-plus-thin.svg" alt="explore users" />
+          <span>Follower users to start exploring their everyday lives!</span>
+        </div>
+      </>
     );
   return (
     <>
@@ -32,6 +36,8 @@ export default function Dashboard() {
           <PostModal />
         </Modal>
       )}
+
+      <Recommended />
     </>
   );
 }

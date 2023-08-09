@@ -39,19 +39,7 @@ export default function SidebarList({
         />
         Search
       </li>
-      <li
-        className={activeTab === "explore" ? styles.active : ""}
-        onClick={() => {
-          setActiveTab("explore");
-          navigate("/app/explore");
-        }}
-      >
-        <img
-          src={`/explore-${activeTab === "explore" ? "fill" : "thin"}.svg`}
-          alt="explore"
-        />
-        Explore
-      </li>
+
       <li
         className={activeTab === "notifications" ? styles.active : ""}
         onClick={() => {

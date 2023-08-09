@@ -1,6 +1,7 @@
 const path = require("path");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const sharp = require("sharp");
 const catchAsync = require(path.join(
   __dirname,
   "..",
@@ -74,9 +75,22 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.changeData = catchAsync(async (req, res, next) => {
+  let filename;
+  if (req.file) {
+    filename = req.user.id + Date.now() + req.file.originalname;
+    // save buffer to file
+    sharp(req.file.buffer)
+      .jpeg(90)
+      .resize(110, 110, {
+        fit: sharp.fit.cover,
+        position: sharp.position.center,
+      })
+      .toFile("public/" + filename);
+  }
   const user = await User.findById(req.user.id);
   delete req.body.password;
   Object.entries(req.body).forEach((e) => (user[e[0]] = e[1]));
+  if (req.file) user.profilePicture = filename;
   await user.save({ validateBeforeSave: false });
   res.status(200).json({
     status: "success",
@@ -127,6 +141,7 @@ exports.verify = catchAsync(async (req, res, next) => {
     .populate({ path: "following", select: "username profilePicture" })
     .populate({ path: "followers", select: "profilePicture username" })
     .populate({ path: "requests", select: "username profilePicture" });
+
   if (!user)
     return next(new AppError(401, "User deleted profile, please login!"));
   if (!user.checkPasswordChange())
@@ -134,6 +149,7 @@ exports.verify = catchAsync(async (req, res, next) => {
       new AppError(401, "Password changed in meantime, please login again!")
     );
 
+  user.posts = user.posts.sort((a, z) => z.createdAt - a.createdAt);
   return res.status(200).json({
     user,
   });
