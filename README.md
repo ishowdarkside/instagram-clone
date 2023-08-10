@@ -1,7 +1,7 @@
 # Instagram-clone
 MERN-stack Instagram clone web application
 
-Google is detecting this project as a phishing website, so click "visit this unsafe site." in order to fully test its features.
+Google is indexing this project as a phishing website, so click "visit this unsafe site." in order to fully test its features.
 
 Live application: https://ajdin-instagram-clone.onrender.com
 (wait a few seconds before it loads the app)
