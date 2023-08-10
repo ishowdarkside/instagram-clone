@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useProtect } from "../../hooks/useProtect";
 import Spinner from "../../ui/Spinner/Spinner";
 import styles from "./followers.module.scss";
+import { usePostContext } from "../../context/ActivePost";
 
 export default function FollowingModal() {
   const { data, isLoading } = useProtect();
@@ -21,9 +22,15 @@ export default function FollowingModal() {
 }
 
 function Following({ data }) {
+  const { dispatch } = usePostContext();
   const navigate = useNavigate();
   return (
-    <div onClick={() => navigate(`/app/profile/${data._id}`)}>
+    <div
+      onClick={() => {
+        dispatch({ type: "reset" });
+        navigate(`/app/profile/${data._id}`);
+      }}
+    >
       <img src={`http://127.0.0.1:3000/${data.profilePicture}`} alt="avatar" />
       <span>{data.username}</span>
     </div>

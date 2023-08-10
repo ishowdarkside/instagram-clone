@@ -5,6 +5,7 @@ import { useProtect } from "../../hooks/useProtect";
 import { usePostContext } from "../../context/ActivePost";
 import { useLikePost } from "../../hooks/usePostActions";
 import { useState } from "react";
+import ImageSlider from "../../ui/Slider/ImageSlider";
 export default function FeedPost({ post }) {
   const { mutate: likePost } = useLikePost();
   const [hasLiked, setHasLiked] = useState(false);
@@ -21,9 +22,11 @@ export default function FeedPost({ post }) {
       {hasLiked && (
         <img src="/heart-fill.svg" alt="heart" className={styles.tempLike} />
       )}
-      {post.images.map((i) => (
-        <Image imgSrc={i} key={i} onDoubleClick={handleLike} />
-      ))}
+      <ImageSlider>
+        {post.images.map((i) => (
+          <Image imgSrc={i} key={i} onDoubleClick={handleLike} />
+        ))}
+      </ImageSlider>
       <ActionaPanel post={post} />
     </div>
   );
@@ -31,11 +34,13 @@ export default function FeedPost({ post }) {
 
 function Image({ imgSrc, onDoubleClick }) {
   return (
-    <img
-      src={`http://127.0.0.1:3000/${imgSrc}`}
-      alt="post"
-      onDoubleClick={onDoubleClick}
-    />
+    <div>
+      <img
+        src={`http://127.0.0.1:3000/${imgSrc}`}
+        alt="post"
+        onDoubleClick={onDoubleClick}
+      />
+    </div>
   );
 }
 

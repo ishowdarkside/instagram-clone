@@ -30,3 +30,13 @@ body {
   color: #262626;
   font-size: 1.4rem;
 }
+
+.slick-prev {
+  transform: translateX(4rem);
+  z-index: 999;
+}
+
+.slick-next {
+  z-index: 99999;
+  transform: translateX(-3.5rem);
+}

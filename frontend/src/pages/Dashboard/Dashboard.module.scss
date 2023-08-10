@@ -26,7 +26,8 @@
 }
 
 .postContainer {
-  max-width: fit-content;
+  max-width: 50rem;
+  overflow: hidden;
   position: relative;
   img {
     width: 50rem;
@@ -68,7 +69,7 @@
 }
 
 .actionPanel {
-  padding: 0 0 2rem 0;
+  padding: 1rem 0 2rem 0;
 }
 .buttonWrapper {
   display: flex;

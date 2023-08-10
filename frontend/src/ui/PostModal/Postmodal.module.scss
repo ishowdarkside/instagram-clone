@@ -13,6 +13,7 @@
 
   .imgWrapper {
     max-width: 80rem;
+
     max-height: 80rem;
   }
 }
@@ -197,4 +198,9 @@
   img {
     width: 1rem;
   }
+}
+
+.postImg {
+  height: 80rem !important;
+  max-height: 80rem;
 }

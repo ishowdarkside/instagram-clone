@@ -1,5 +1,6 @@
 import { usePostContext } from "../../context/ActivePost";
 import { useLikePost } from "../../hooks/usePostActions";
+import ImageSlider from "../Slider/ImageSlider";
 import PostModalRightPanel from "./PostModalRightPanel";
 import styles from "./Postmodal.module.scss";
 export default function PostModal() {
@@ -11,11 +12,19 @@ export default function PostModal() {
   return (
     <div className={styles.postModal}>
       <div className={styles.imgWrapper}>
-        <img
-          onDoubleClick={() => likePost(activePost._id)}
-          src={`http://127.0.0.1:3000/${activePost.images[0]}`}
-          alt="post img"
-        />
+        <ImageSlider>
+          {activePost.images.map((i) => {
+            return (
+              <img
+                key={i}
+                onDoubleClick={() => likePost(activePost._id)}
+                src={`http://127.0.0.1:3000/${i}`}
+                alt="post img"
+                className={styles.postImg}
+              />
+            );
+          })}
+        </ImageSlider>
       </div>
       <PostModalRightPanel />
     </div>

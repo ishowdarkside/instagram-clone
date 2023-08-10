@@ -1,28 +1,27 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
-import { useProtect } from "../../hooks/useProtect";
+import { useGetProfile } from "../../hooks/useProfileActions";
 import Spinner from "../../ui/Spinner/Spinner";
-import styles from "./followers.module.scss";
+import styles from "./Modals.module.scss";
 import { usePostContext } from "../../context/ActivePost";
 
-export default function FollowersModal() {
-  const { data, isLoading } = useProtect();
+export default function FollowingModal() {
+  const { data, isLoading } = useGetProfile();
   if (isLoading) return <Spinner />;
   const { user } = data;
   return (
     <div className={styles.followers}>
-      <h1>Followers</h1>
-      {user.followers.length > 0 &&
-        user.followers.map((f) => <Follower data={f} key={f._id} />)}
-
-      {user.followers.length === 0 && (
+      <h1>Following</h1>
+      {user.following.length > 0 &&
+        user.following.map((f) => <Following data={f} key={f._id} />)}
+      {user.following.length === 0 && (
         <span className={styles.noResults}>Oh, so empty 😿</span>
       )}
     </div>
   );
 }
 
-function Follower({ data }) {
+function Following({ data }) {
   const { dispatch } = usePostContext();
   const navigate = useNavigate();
   return (
