@@ -32,7 +32,7 @@
 
     input {
       padding: 1rem;
-      border-radius: 5ps;
+      border-radius: 5px;
       border: none;
       outline: none;
       background-color: #efefef;
@@ -56,4 +56,49 @@
 
 .fileInput {
   display: none;
+}
+
+.accessibility {
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  div {
+    display: flex;
+    align-items: center;
+    flex-direction: row !important;
+    gap: 1rem;
+  }
+}
+
+//Password form panel
+
+.passwordForm {
+  margin-top: 10rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      padding: 1rem;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background-color: #efefef;
+    }
+  }
+  button {
+    padding: 1rem;
+    border: none;
+    outline: none;
+    background-color: #0095f6;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 }

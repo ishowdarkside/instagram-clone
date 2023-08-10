@@ -6,6 +6,8 @@ const initialState = {
   isOpenModal: false,
   activePost: null,
   isOpenPostModal: false,
+  isOpenFollowingModal: false,
+  isOpenFollowersModal: false,
 };
 
 function reducer(state, action) {
@@ -16,6 +18,10 @@ function reducer(state, action) {
       return initialState;
     case "openPostModal":
       return { ...state, isOpenPostModal: true };
+    case "openFollowingModal":
+      return { ...state, isOpenFollowingModal: true };
+    case "openFollowersModal":
+      return { ...state, isOpenFollowersModal: true };
     default:
       throw new Error("UNKOWN ACTION TYPE");
   }

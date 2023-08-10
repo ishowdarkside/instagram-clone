@@ -118,3 +118,24 @@ export async function changeGeneralData(data) {
     throw new Error(err);
   }
 }
+
+export async function changePassword(oldPassword, newPassword) {
+  try {
+    const token = localStorage.getItem("jwt");
+    const res = await fetch(`${BASE_URL}/api/auth/changePassword`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        oldPassword,
+        newPassword,
+      }),
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    throw new Error(err);
+  }
+}

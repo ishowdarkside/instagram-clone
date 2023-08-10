@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   acceptRequest,
   changeGeneralData,
+  changePassword,
   declineRequest,
   followProfile,
   getCEO,
@@ -102,9 +103,27 @@ export function useChangeData() {
     onSuccess: (res) => {
       if (res.status === "success") {
         toast.success(res.message);
+        queryClient.invalidateQueries(["user"]);
       }
-      queryClient.invalidateQueries(["user"]);
     },
+  });
+  return { mutate };
+}
+
+export function useChangePassword() {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: ({ oldPassword, newPassword }) =>
+      changePassword(oldPassword, newPassword),
+    onSuccess: (res) => {
+      console.log(res);
+      if (res.status === "success") {
+        toast.success(res.message);
+        queryClient.invalidateQueries(["user"]);
+      }
+      if (res.status === "fail") toast.error(res.message);
+    },
+    onError: (err) => toast.error(err.message),
   });
   return { mutate };
 }

@@ -70,13 +70,27 @@ export default function GeneralForm() {
           {...register("lastName", { required: true })}
         />
       </div>
-      <select defaultValue="Select Viisiblitiy" {...register("isPrivate")}>
-        <option disabled={true}>Select visiblity</option>
-        <option value={true}>Private</option>
-        <option value={false} selected>
-          Public
-        </option>
-      </select>
+      <div className={styles.accessibility}>
+        <span>accessibility</span>
+        <div>
+          <input
+            type="radio"
+            value={true}
+            defaultChecked={user.isPrivate}
+            {...register("isPrivate")}
+          />
+          <label htmlFor="isPrivate">Private</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            defaultChecked={!user.isPrivate}
+            value={false}
+            {...register("isPrivate")}
+          />
+          <label htmlFor="isPrivate">Public</label>
+        </div>
+      </div>
       <button disabled={!isValid}>Save changes</button>
     </form>
   );
