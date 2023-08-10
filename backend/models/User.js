@@ -5,14 +5,8 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      validate: {
-        validator: function (val) {
-          return val.match(
-            /^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$/
-          );
-        },
-        message: "Invalid username",
-      },
+      minlength: [3, "Minimum length is 3 chars"],
+      maxlength: [15, "Maximum length is 15 chars"],
     },
     firstName: {
       type: String,

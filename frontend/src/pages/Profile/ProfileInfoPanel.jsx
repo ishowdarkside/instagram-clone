@@ -17,7 +17,6 @@ export default function InfoPanel({ profile }) {
     state: { isOpenFollowingModal, isOpenFollowersModal },
   } = usePostContext();
 
-  console.log(isOpenFollowersModal, isOpenFollowingModal);
   if (!profile) return null;
   const postCount = profile.posts?.length ?? profile.postCount;
   const followersCount = profile.followers?.length ?? profile.followersCount;

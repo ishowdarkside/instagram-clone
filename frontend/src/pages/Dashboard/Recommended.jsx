@@ -7,6 +7,8 @@ export default function Recommended() {
   const navigate = useNavigate();
   if (isLoading) return <Spinner />;
   const { CEO } = data;
+
+  if (!CEO) return null;
   return (
     <div className={styles.RecommendedTab}>
       <span>Suggested for you</span>
