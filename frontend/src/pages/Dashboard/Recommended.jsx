@@ -16,7 +16,7 @@ export default function Recommended() {
         className={styles.ceoWrapper}
         onClick={() => navigate(`/app/profile/${CEO._id}`)}
       >
-        <img src={`http://127.0.0.1:3000/${CEO.profilePicture}`} alt="avatar" />
+        <img src={`/${CEO.profilePicture}`} alt="avatar" />
         <div>
           <b>{CEO.username}</b>
           <span>

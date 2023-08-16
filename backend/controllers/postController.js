@@ -28,7 +28,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
     // save buffer to file
     sharp(f.buffer)
       .jpeg(90)
-      .toFile("public/" + filename);
+      .toFile("public/dist/" + filename);
     //store images filename to db
     post.images.push(filename);
   });

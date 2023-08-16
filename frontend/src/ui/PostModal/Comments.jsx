@@ -11,7 +11,7 @@ export default function Comments({ comments }) {
     <div className={styles.commentsPanel}>
       <div className={styles.comment}>
         <img
-          src={`http://127.0.0.1:3000/${activePost.creator.profilePicture}`}
+          src={`/${activePost.creator.profilePicture}`}
           alt="profile avatar"
         />
         <div>

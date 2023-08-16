@@ -1,9 +1,15 @@
+@import "../../styles/mixins.scss";
+
 .mePanel {
   width: 85rem;
   max-width: 85rem;
   padding: 3rem 0;
   margin: 0 auto;
   position: relative;
+
+  @include responsive("tab-land") {
+    width: auto;
+  }
 }
 
 .infoPanel {
@@ -69,7 +75,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  @include responsive("tab-land") {
+    top: 90%;
+  }
   img {
     width: 3.2rem !important;
     height: 3.2rem !important;
@@ -81,6 +89,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 27rem));
   gap: 1rem;
+
+  @include responsive("tab-land") {
+    justify-content: center;
+  }
   img {
     width: 100%;
     height: 100%;

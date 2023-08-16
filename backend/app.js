@@ -14,7 +14,7 @@ const postRouter = require(path.join(__dirname, "routes", "PostRouter"));
 const userRouter = require(path.join(__dirname, "routes", "userRouter"));
 
 //serving static files
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public", "dist")));
 
 //Parsing incoming json
 app.use(express.json());
@@ -27,6 +27,9 @@ app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
 
+app.use("*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "public", "dist", "index.html"));
+});
 app.use(errorMiddleware);
 
 module.exports = app;

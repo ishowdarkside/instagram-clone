@@ -18,7 +18,7 @@ export default function PostModal() {
               <img
                 key={i}
                 onDoubleClick={() => likePost(activePost._id)}
-                src={`http://127.0.0.1:3000/${i}`}
+                src={`/${i}`}
                 alt="post img"
                 className={styles.postImg}
               />

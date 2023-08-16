@@ -116,7 +116,6 @@ export function useChangePassword() {
     mutationFn: ({ oldPassword, newPassword }) =>
       changePassword(oldPassword, newPassword),
     onSuccess: (res) => {
-      console.log(res);
       if (res.status === "success") {
         toast.success(res.message);
         queryClient.invalidateQueries(["user"]);

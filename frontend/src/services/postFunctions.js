@@ -1,10 +1,10 @@
 import axios from "axios";
-const BASE_URL = "http://127.0.0.1:3000";
+const BASE_URL = "/";
 
 export async function commentPost(postId, comment) {
   const token = localStorage.getItem("jwt");
   try {
-    const res = await fetch(`${BASE_URL}/api/posts/comment-post/${postId}`, {
+    const res = await fetch(`${BASE_URL}api/posts/comment-post/${postId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export async function commentPost(postId, comment) {
 export async function deleteComment(postId, commentId) {
   const token = localStorage.getItem("jwt");
   try {
-    await fetch(`${BASE_URL}/api/posts/delete-comment/${postId}`, {
+    await fetch(`${BASE_URL}api/posts/delete-comment/${postId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export async function deleteComment(postId, commentId) {
 export async function getPost(postId) {
   const token = localStorage.getItem("jwt");
   try {
-    const res = await fetch(`${BASE_URL}/api/posts/post/${postId}`, {
+    const res = await fetch(`${BASE_URL}api/posts/post/${postId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -58,7 +58,7 @@ export async function getPost(postId) {
 export async function likePost(postId) {
   const token = localStorage.getItem("jwt");
   try {
-    const res = await fetch(`${BASE_URL}/api/posts/like-post/${postId}`, {
+    const res = await fetch(`${BASE_URL}api/posts/like-post/${postId}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -74,7 +74,7 @@ export async function likePost(postId) {
 export async function deletePost(postId) {
   const token = localStorage.getItem("jwt");
   try {
-    await fetch(`${BASE_URL}/api/posts/delete-post/${postId}`, {
+    await fetch(`${BASE_URL}api/posts/delete-post/${postId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -89,7 +89,7 @@ export async function getFeed() {
   const token = localStorage.getItem("jwt");
 
   try {
-    const res = await fetch(`${BASE_URL}/api/posts/feed`, {
+    const res = await fetch(`${BASE_URL}api/posts/feed`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -105,7 +105,7 @@ export async function createPost(data) {
   const token = localStorage.getItem("jwt");
   try {
     const res = await axios({
-      url: `${BASE_URL}/api/posts/create-post`,
+      url: `${BASE_URL}api/posts/create-post`,
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

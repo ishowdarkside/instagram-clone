@@ -34,9 +34,11 @@ body {
 .slick-prev {
   transform: translateX(4rem);
   z-index: 999;
+  left: 5px !important;
 }
 
 .slick-next {
+  right: 5px !important;
   z-index: 99999;
   transform: translateX(-3.5rem);
 }

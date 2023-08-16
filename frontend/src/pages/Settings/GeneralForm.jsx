@@ -30,10 +30,7 @@ export default function GeneralForm() {
       onSubmit={handleSubmit((data) => handleChange(data))}
     >
       <div>
-        <img
-          src={`http://127.0.0.1:3000/${user.profilePicture}`}
-          alt="avatar"
-        />
+        <img src={`/${user.profilePicture}`} alt="avatar" />
         <label htmlFor="profilePicture">Change profile picture</label>
         <input
           type="file"

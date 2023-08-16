@@ -85,7 +85,7 @@ exports.changeData = catchAsync(async (req, res, next) => {
         fit: sharp.fit.cover,
         position: sharp.position.center,
       })
-      .toFile("public/" + filename);
+      .toFile("public/dist/" + filename);
   }
   const user = await User.findById(req.user.id);
   delete req.body.password;

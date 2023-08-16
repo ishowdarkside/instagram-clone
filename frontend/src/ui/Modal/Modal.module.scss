@@ -1,3 +1,4 @@
+@import "../../styles/mixins.scss";
 .modalOverlay {
   background-color: rgba(#000, 0.6);
   position: fixed;
@@ -8,6 +9,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  @include responsive("tab-land") {
+    padding: 0 2rem;
+  }
 }
 
 .modalPanel {
@@ -17,6 +21,10 @@
   width: 120rem;
   max-width: 120rem;
   height: 80rem;
+
+  @include responsive("tab-land") {
+    height: 60rem;
+  }
 }
 .closeModal {
   position: absolute;

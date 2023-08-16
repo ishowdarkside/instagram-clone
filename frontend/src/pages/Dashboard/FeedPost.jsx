@@ -35,11 +35,7 @@ export default function FeedPost({ post }) {
 function Image({ imgSrc, onDoubleClick }) {
   return (
     <div>
-      <img
-        src={`http://127.0.0.1:3000/${imgSrc}`}
-        alt="post"
-        onDoubleClick={onDoubleClick}
-      />
+      <img src={`/${imgSrc}`} alt="post" onDoubleClick={onDoubleClick} />
     </div>
   );
 }
@@ -48,10 +44,7 @@ function UserInfo({ creator }) {
   return (
     <div className={styles.userInfo}>
       <Link to={`/app/profile/${creator._id}`}>
-        <img
-          src={`http://127.0.0.1:3000/${creator.profilePicture}`}
-          alt="avatar"
-        />
+        <img src={`/${creator.profilePicture}`} alt="avatar" />
         <span>{creator.username}</span>
       </Link>
     </div>

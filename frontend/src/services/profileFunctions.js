@@ -1,10 +1,10 @@
 import axios from "axios";
-const BASE_URL = "http://127.0.0.1:3000";
+const BASE_URL = "/";
 
 export async function getProfile(profileId) {
   const token = localStorage.getItem("jwt");
   try {
-    const res = await fetch(`${BASE_URL}/api/users/getUser/${profileId}`, {
+    const res = await fetch(`${BASE_URL}api/users/getUser/${profileId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -19,7 +19,7 @@ export async function getProfile(profileId) {
 export async function followProfile(profileId) {
   const token = localStorage.getItem("jwt");
   try {
-    await fetch(`${BASE_URL}/api/users/followUser/${profileId}`, {
+    await fetch(`${BASE_URL}api/users/followUser/${profileId}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -33,15 +33,12 @@ export async function followProfile(profileId) {
 export async function acceptRequest(profileId) {
   const token = localStorage.getItem("jwt");
   try {
-    const res = await fetch(
-      `${BASE_URL}/api/users/acceptRequest/${profileId}`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const res = await fetch(`${BASE_URL}api/users/acceptRequest/${profileId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await res.json();
     return data;
   } catch (err) {
@@ -53,7 +50,7 @@ export async function declineRequest(profileId) {
   const token = localStorage.getItem("jwt");
   try {
     const res = await fetch(
-      `${BASE_URL}/api/users/declineRequest/${profileId}`,
+      `${BASE_URL}api/users/declineRequest/${profileId}`,
       {
         method: "PATCH",
         headers: {
@@ -71,7 +68,7 @@ export async function declineRequest(profileId) {
 export async function searchUsers(input) {
   const token = localStorage.getItem("jwt");
   try {
-    const res = await fetch(`${BASE_URL}/api/users/search`, {
+    const res = await fetch(`${BASE_URL}api/users/search`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,7 +88,7 @@ export async function searchUsers(input) {
 export async function getCEO() {
   const token = localStorage.getItem("jwt");
   try {
-    const res = await fetch(`${BASE_URL}/api/users/getCEO`, {
+    const res = await fetch(`${BASE_URL}api/users/getCEO`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -107,7 +104,7 @@ export async function changeGeneralData(data) {
   const token = localStorage.getItem("jwt");
 
   try {
-    const res = await axios.patch(`${BASE_URL}/api/auth/changeData`, data, {
+    const res = await axios.patch(`${BASE_URL}api/auth/changeData`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
@@ -122,7 +119,7 @@ export async function changeGeneralData(data) {
 export async function changePassword(oldPassword, newPassword) {
   try {
     const token = localStorage.getItem("jwt");
-    const res = await fetch(`${BASE_URL}/api/auth/changePassword`, {
+    const res = await fetch(`${BASE_URL}api/auth/changePassword`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

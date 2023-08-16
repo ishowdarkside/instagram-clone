@@ -6,6 +6,6 @@
   grid-template-columns: 30rem 1fr;
 
   @include responsive("tab-land") {
-    grid-template-columns: 1fr;
+    display: block;
   }
 }

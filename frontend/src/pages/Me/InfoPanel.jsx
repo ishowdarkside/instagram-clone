@@ -18,10 +18,7 @@ export default function InfoPanel() {
   return (
     <>
       <div className={styles.infoPanel}>
-        <img
-          src={`http://127.0.0.1:3000/${user.profilePicture}`}
-          alt="profile pic"
-        />
+        <img src={`/${user.profilePicture}`} alt="profile pic" />
         <div className={styles.info}>
           <div className={styles.firstRow}>
             <span className={styles.username}>{user.username}</span>

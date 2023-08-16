@@ -7,7 +7,7 @@ export default function SearchResult(data) {
       to={`/app/profile/${searchResult._id}`}
       className={styles.searchResult}
     >
-      <img src={`http://127.0.0.1:3000/${searchResult.profilePicture}`} />
+      <img src={`/${searchResult.profilePicture}`} />
       <span className={styles.username}>{searchResult.username}</span>
       <span className={styles.fullName}>
         {searchResult.firstName} {searchResult.lastName}

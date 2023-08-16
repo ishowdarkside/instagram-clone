@@ -27,7 +27,7 @@ export default function Comment({ comment }) {
         </button>
       )}
       <img
-        src={`http://127.0.0.1:3000/${comment.creator.profilePicture}`}
+        src={`/${comment.creator.profilePicture}`}
         alt="profile avatar"
         onClick={() => {
           dispatch({ type: "reset" });

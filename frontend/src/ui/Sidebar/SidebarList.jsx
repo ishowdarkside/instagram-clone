@@ -24,7 +24,7 @@ export default function SidebarList({
           src={`/house-${activeTab === "home" ? "fill" : "thin"}.svg`}
           alt="home"
         />
-        Home
+        <span>Home</span>
       </li>
       <li
         className={activeTab === "search" ? styles.active : ""}
@@ -37,7 +37,7 @@ export default function SidebarList({
           src={`/search-${activeTab === "search" ? "fill" : "thin"}.svg`}
           alt="search"
         />
-        Search
+        <span>Search</span>
       </li>
 
       <li
@@ -57,7 +57,7 @@ export default function SidebarList({
             alt="notifications"
           />
         </div>
-        Notifications
+        <span>Notifications</span>
       </li>
       <li
         className={activeTab === "create" ? styles.active : ""}
@@ -70,7 +70,7 @@ export default function SidebarList({
           src={`/create-${activeTab === "create" ? "fill" : "thin"}.svg`}
           alt="create"
         />
-        Create
+        <span>Create</span>
       </li>
       <li
         className={activeTab === "profile" ? styles.active : ""}
@@ -79,11 +79,8 @@ export default function SidebarList({
           navigate("/app/me");
         }}
       >
-        <img
-          src={`http://127.0.0.1:3000/${user.profilePicture}`}
-          alt="profile img"
-        />
-        Profile
+        <img src={`/${user.profilePicture}`} alt="profile img" />
+        <span>Profile</span>
       </li>
     </ul>
   );

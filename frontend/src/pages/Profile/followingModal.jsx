@@ -31,7 +31,7 @@ function Following({ data }) {
         navigate(`/app/profile/${data._id}`);
       }}
     >
-      <img src={`http://127.0.0.1:3000/${data.profilePicture}`} alt="avatar" />
+      <img src={`/${data.profilePicture}`} alt="avatar" />
       <span>{data.username}</span>
     </div>
   );

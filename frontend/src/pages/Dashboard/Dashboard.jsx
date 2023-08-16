@@ -18,7 +18,10 @@ export default function Dashboard() {
       <>
         <Recommended />
         <div className={styles.noPosts}>
-          <img src="/user-circle-plus-thin.svg" alt="explore users" />
+          <img
+            src="/user-circle-plus-thin.svg"
+            alt="explore users"
+          />
           <span>Follower users to start exploring their everyday lives!</span>
         </div>
       </>

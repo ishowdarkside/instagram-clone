@@ -13,7 +13,7 @@ export default function ProfilePost({ post }) {
         <img src="/heart-fill.svg" alt="likes" />
         {post.likes.length}
       </div>
-      <img src={`http://127.0.0.1:3000/${post.images[0]}`} alt="img layer " />
+      <img src={`/${post.images[0]}`} alt="img layer " />
     </div>
   );
 }

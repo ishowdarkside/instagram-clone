@@ -35,10 +35,7 @@ export default function Creator({ creator }) {
   return (
     <div className={styles.creatorPanel}>
       <div>
-        <img
-          src={`http://127.0.0.1:3000/${creator.profilePicture}`}
-          alt="profile avatar"
-        />
+        <img src={`/${creator.profilePicture}`} alt="profile avatar" />
         <span>{creator.username}</span>
       </div>
       {user._id === activePost.creator._id && (
