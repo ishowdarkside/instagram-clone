@@ -26,6 +26,11 @@ Features of App
 
 Screenshots of web app
 
-![clone1](https://github.com/ishowdarkside/instagram-clone/assets/88293435/01692d48-f2ae-4938-83cb-fe69d886a397)
-![clone2](https://github.com/ishowdarkside/instagram-clone/assets/88293435/fb6abe26-284d-4454-9838-432fef29a45a)
-![clone3](https://github.com/ishowdarkside/instagram-clone/assets/88293435/e331ded6-ccc4-4ecc-b03e-20c041f057dd)
+
+![slidza5](https://github.com/ishowdarkside/instagram-clone/assets/88293435/2c1c97db-8763-4ec2-b5d1-bd664864460a)
+
+![slika3](https://github.com/ishowdarkside/instagram-clone/assets/88293435/329d6d9f-484d-4c51-8203-adb67cad8899)
+![slika2](https://github.com/ishowdarkside/instagram-clone/assets/88293435/33e826a9-1c29-4688-a9ff-d2e873be845e)
+![slika](https://github.com/ishowdarkside/instagram-clone/assets/88293435/48946f57-861d-4a5a-a9b4-afb11f65fc85)
+![slika4](https://github.com/ishowdarkside/instagram-clone/assets/88293435/20d4908a-3975-498d-97e0-352bfd2f5701)
+![slidza1](https://github.com/ishowdarkside/instagram-clone/assets/88293435/60b09821-fb7c-4cf0-89fc-0dd16a659836)
