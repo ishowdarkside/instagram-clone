@@ -1,12 +1,10 @@
 # Instagram-clone
 MERN-stack Instagram clone web application
 
-Google is indexing this project as a phishing website, so click "visit this unsafe site." in order to fully test its features.
-
-Live application: https://ajdin-instagram-clone.onrender.com
+Live application: https://darksidegram.onrender.com
 (wait a few seconds before it loads the app)
 
-Application is NOT responsive (for now) 
+The application is NOT responsive (for now) 
 
 Technologies used:
 React (React query, context API, Axios)
