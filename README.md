@@ -1,6 +1,10 @@
 # Instagram-clone
 MERN-stack Instagram clone web application
 
+Test auth data:
+username: ishowdarkside
+password: stalker1
+
 Live application: https://darksidegram.onrender.com
 (wait a few seconds before it loads the app)
 
